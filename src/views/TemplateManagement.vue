@@ -1078,7 +1078,7 @@ export default {
                 '责任人名称': item.signature.responsible_person,
                 '责任人证件类型': item.signature.responsible_person_id_type,
                 '责任人证件号码': item.signature.responsible_person_id_number,
-                '具体用途': item.template.business_category === '02' && item.template.business_subcategory === '01' ? "民生服务" : this.exportTemplateTypeOptions[item.template.business_category]['children'][`${item.template.business_category}.${item.template.business_subcategory}`]['ulabel'],
+                '具体用途': item.template.business_category === '02' && item.template.business_subcategory === '01' ? "民生服务" : this.exportTemplateTypeOptions[item.template.business_category]['children'][`${item.template.business_category}.${item.template.business_subcategory}`]['label'],
                 '签名来源': item.signature.source,
                 '短信签名': item.signature.content,
                 '短信模板': item.template.content.replace(/&\*&/g, '变量'),
