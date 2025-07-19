@@ -3,7 +3,7 @@
     <t-header>
       <t-head-menu theme="dark">
         <template #logo>
-          <div class="logo">短信报表系统</div>
+          <div class="logo">引流短信报备工具</div>
         </template>
       </t-head-menu>
     </t-header>
@@ -34,12 +34,12 @@
             </template>
             链接管理
           </t-menu-item>
-          <t-menu-item value="template-conversion">
+          <!-- <t-menu-item value="template-conversion">
               <template #icon>
                 <t-icon name="swap" />
               </template>
               模板转换
-            </t-menu-item>
+            </t-menu-item> -->
         </t-menu>
       </t-aside>
       <t-content>
