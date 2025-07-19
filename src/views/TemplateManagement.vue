@@ -75,7 +75,7 @@
       <t-dialog v-model:visible="dialogVisible" :header="isEdit ? '编辑模板' : '添加模板'" width="800px" :footer="false">
         <t-form ref="templateForm" :data="formData" :rules="rules" label-width="150px" @submit="submitForm">
           <t-form-item label="签名内容" name="signature_id">
-            <t-select v-model="formData.signature_id" placeholder="请选择签名内容" filterable>
+            <t-select v-model="formData.signature_id" placeholder="请选择签名内容" filterable @focus="loadSignatures">
               <t-option v-for="item in signatureOptions" :key="item.id" :value="item.id" :label="item.content" />
             </t-select>
             <t-button theme="primary" variant="text" @click="goTo('SignatureManagement')">新增签名</t-button>
@@ -108,14 +108,14 @@
           </t-form-item> -->
 
           <t-form-item label="号码" name="number_id">
-            <t-select v-model="formData.number_id" placeholder="请选择号码" multiple :max="2" filterable :disabled="!formData.signature_id">
+            <t-select v-model="formData.number_id" placeholder="请选择号码" multiple :max="2" filterable :disabled="!formData.signature_id" @focus="loadNumbers">
               <t-option v-for="item in numberOptions" :key="item.id" :value="item.id" :label="item.number" />
             </t-select>
             <t-button theme="primary" variant="text" @click="goTo('NumberManagement')">新增号码</t-button>
           </t-form-item>
 
           <t-form-item label="链接" name="link_id">
-            <t-select v-model="formData.link_id" placeholder="请选择链接" filterable clearable :disabled="!formData.signature_id">
+            <t-select v-model="formData.link_id" placeholder="请选择链接" filterable clearable :disabled="!formData.signature_id" @focus="loadLinks">
               <t-option v-for="item in linkOptions" :key="item.id" :value="item.id" :label="item.short_url" />
             </t-select>
             <t-button theme="primary" variant="text" @click="goTo('LinkManagement')">新增链接</t-button>
@@ -347,11 +347,14 @@ export default {
     async loadInitialData() {
       await dbService.initDB();
       this.loadTemplates();
-      this.loadRelatedData();
     },
-    async loadRelatedData() {
+    async loadSignatures() {
       this.signatureOptions = await dbService.getAll('signatures');
+    },
+    async loadNumbers() {
       this.numberOptions = await dbService.getAll('numbers');
+    },
+    async loadLinks() {
       this.linkOptions = await dbService.getAll('links');
     },
     async loadTemplates() {
@@ -529,7 +532,8 @@ export default {
     },
 
     goTo(routeName) {
-      this.$router.push({ name: routeName });
+      const { href } = this.$router.resolve({ name: routeName });
+      window.open(href, '_blank');
     },
 
     getTemplateTypeName(category, subcategory) {
