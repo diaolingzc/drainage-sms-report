@@ -1,0 +1,1 @@
+import{_ as o,c as a,a as n,w as s,r,o as c,b as _}from"./index-BCKM321f.js";const p={name:"TemplateConversion",data(){return{}}},l={class:"template-conversion"};function d(i,e,m,f,u,v){const t=r("t-card");return c(),a("div",l,[n(t,{title:"模板转换"},{default:s(()=>e[0]||(e[0]=[_("p",null,"模板转换页面内容",-1)])),_:1,__:[0]})])}const C=o(p,[["render",d]]);export{C as default};
