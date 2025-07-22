@@ -761,7 +761,9 @@ export default {
             .map(n => n.short_url);
 
           const urlsMatch = detectUrls.every(url =>
-            selectedUrls.some(short_url => url.replace(/[-.\s]/g, '') === short_url.replace(/[-.\s]/g, ''))
+            selectedUrls.some(short_url => {
+              return url.replace(/[-.\s]/g, '') === short_url.replace(/[-.\s]/g, ''))
+            }
           );
 
           if (!urlsMatch) {
@@ -821,7 +823,7 @@ export default {
       if (!content) return [];
 
       // 匹配各种格式的链接
-      const linkRegex = /(https?:\/\/[^\s]+)|(www\.[^\s]+\.[^\s]{2,})|([^\s]+\.[^\s]{2,})|(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})/g;
+      const linkRegex = /(?:(https?|ftp):\/\/)?(?:([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+|\d+)\.[a-zA-Z]{2,6}(?:\/[\w\-./?=&#%]*)?/g;
       const matches = content.match(linkRegex) || [];
 
       // 过滤掉常见非链接文本
