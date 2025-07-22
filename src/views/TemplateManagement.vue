@@ -762,8 +762,8 @@ export default {
 
           const urlsMatch = detectUrls.every(url =>
             selectedUrls.some(short_url => {
-              return url.replace(/[-.\s]/g, '') === short_url.replace(/[-.\s]/g, ''))
-            }
+              return url.replace(/[-.\s]/g, '') === short_url.replace(/[-.\s]/g, '')
+            })
           );
 
           if (!urlsMatch) {
